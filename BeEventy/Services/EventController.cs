@@ -4,6 +4,10 @@ using System.Collections.Generic;
 using BeEventy.Data.Models;
 using BeEventy.Data.Repositories;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using BeEventy.Data;
+using System.Xml.Xsl;
+using static BeEventy.Data.Models.Login;
 
 namespace BeEventy.Controllers
 {
@@ -12,13 +16,17 @@ namespace BeEventy.Controllers
     public class EventController : ControllerBase
     {
         private readonly EventRepository _eventRepository;
+        private readonly AccountRepository _accountRepository;
+        private readonly AppDbContext _context;
 
-        public EventController(EventRepository eventRepository)
+        public EventController(EventRepository eventRepository, AccountRepository accountRepository, AppDbContext context)
         {
             _eventRepository = eventRepository;
+            _accountRepository = accountRepository;
+            _context = context;
         }
 
-        [HttpGet]
+        [HttpGet("getAllEvents")]
         public async Task<ActionResult<IEnumerable<Event>>> GetAllEvents()
         {
             var events = await _eventRepository.GetAllEventsAsync();
@@ -60,5 +68,51 @@ namespace BeEventy.Controllers
             await _eventRepository.DeleteEventAsync(id);
             return NoContent();
         }
+
+
+        [HttpPost("{eventId}/plus")]
+        public async Task<IActionResult> AddPlusToEvent(int eventId, [FromBody] LoginResponse loginResponse)
+        {
+            var loggedInUserId = loginResponse.UserId;
+            var success = await _eventRepository.AddPlusToEventAsync(eventId, loggedInUserId);
+
+            if (success)
+            {
+                return Ok("Plus został dodany do wydarzenia.");
+            }
+            else
+            {
+                return BadRequest("Nie udało się dodać plusa do wydarzenia.");
+            }
+        }
+        [HttpPost("{eventId}/minus")]
+        public async Task<IActionResult> AddPMinusToEvent(int eventId, [FromBody] LoginResponse loginResponse)
+        {
+            var loggedInUserId = loginResponse.UserId;
+            var success = await _eventRepository.AddMinusToEventAsync(eventId, loggedInUserId);
+
+            if (success)
+            {
+                return Ok("Minus został dodany do wydarzenia.");
+            }
+            else
+            {
+                return BadRequest("Nie udało się dodać minusa do wydarzenia.");
+            }
+        }
+        [HttpGet("sort/date")]
+        public async Task<ActionResult<IEnumerable<Event>>> SortEventsByDate()
+        {
+            var sortedEvents = await _eventRepository.SortEventsByDateAsync();
+            return Ok(sortedEvents);
+        }
+
+        [HttpGet("sort/votes")]
+        public async Task<ActionResult<IEnumerable<Event>>> SortEventsByVotes()
+        {
+            var sortedEvents = await _eventRepository.SortEventsByVotesAsync();
+            return Ok(sortedEvents);
+        }
+
     }
 }

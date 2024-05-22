@@ -9,15 +9,16 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));\
 builder.Services.AddScoped<EventRepository>();
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("WebApiDatabase")));
 builder.Services.AddDbContext<AppDbContext>();
 builder.Services.AddScoped<AccountRepository>();
 
 var app = builder.Build();
-
+app.UseCors(
+  options => options.WithOrigins("*").AllowAnyMethod().AllowAnyHeader()
+      );
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();

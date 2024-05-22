@@ -1,9 +1,15 @@
-﻿using BeEventy.Data.Repositories;
-using BeEventy.Data.Models;
+﻿using BeEventy.Data.Models;
+using BeEventy.Data.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Microsoft.IdentityModel.Tokens;
 using PostgreSQL.Data;
+using System;
+using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
+using static BeEventy.Data.Models.Login;
 
 namespace BeEventy.Controllers
 {
@@ -47,6 +53,17 @@ namespace BeEventy.Controllers
             return Ok(account);
         }
 
+        [HttpGet("/email/{email}")]
+        public async Task<ActionResult<Account>> GetAccountByEmail(string email)
+        {
+            var account = await _accountRepository.GetAccountByEmailAsync(email);
+            if (account == null)
+            {
+                return NotFound();
+            }
+            return Ok(account);
+        }
+
         [HttpPost]
         public async Task<ActionResult<Account>> AddAccount(Account account)
         {
@@ -60,5 +77,31 @@ namespace BeEventy.Controllers
             await _accountRepository.DeleteAccountAsync(id);
             return NoContent();
         }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        {
+            var account = await _accountRepository.GetAccountByEmailAsync(request.Login);
+
+            if (account != null && account.Password == request.Password)
+            {
+                var secretKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("superTajneHasłoooooooooooooooooooooooooooooooo"));
+                var credentials = new SigningCredentials(secretKey, SecurityAlgorithms.HmacSha256);
+                var tokenOptions = new JwtSecurityToken(
+                    issuer: "http://localhost:5100",
+                    audience: "http://localhost:4200",
+                    claims: new List<Claim>(),
+                    expires: DateTime.Now.AddMinutes(30),
+                    signingCredentials: credentials
+                );
+                var token = new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+
+                // Zwróć ID zalogowanego użytkownika razem z tokenem JWT
+                return Ok(new LoginResponse(token, account.Id));
+            }
+
+            return Unauthorized();
+        }
+
     }
 }

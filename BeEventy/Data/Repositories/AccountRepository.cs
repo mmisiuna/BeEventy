@@ -1,8 +1,13 @@
 ﻿using BeEventy.Data.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using PostgreSQL.Data;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
+using static BeEventy.Data.Models.Login;
 
 namespace BeEventy.Data.Repositories
 {
@@ -27,6 +32,10 @@ namespace BeEventy.Data.Repositories
         public async Task<Account> GetAccountByNameAsync(string name)
         {
             return await _context.Accounts.FirstOrDefaultAsync(a => a.Name == name);
+        }
+        public async Task<Account> GetAccountByEmailAsync(string email)
+        {
+            return await _context.Accounts.FirstOrDefaultAsync(a => a.Email == email);
         }
 
         public async Task AddAccountAsync(Account account)
