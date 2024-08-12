@@ -1,0 +1,123 @@
+TRUNCATE TABLE event RESTART IDENTITY CASCADE;
+
+ALTER SEQUENCE IF EXISTS event_id_seq RESTART WITH 1;
+ALTER SEQUENCE IF EXISTS account_id_seq RESTART WITH 1;
+ALTER SEQUENCE IF EXISTS distributor_id_seq RESTART WITH 1;
+
+INSERT INTO event (
+    "name", "date_of_start", "date_of_end", "date_of_upload", 
+    "description", "location", "address", "image", 
+    "author_id", "pluses", "minuses", "amount_of_all_tickets", 
+    "amount_of_batches", "is_confirmed", "number_of_reports", 
+    "is_sold_out", "is_expired", "event_status", "event_type", 
+    "distributor_id"
+) 
+VALUES 
+('Gwarki', '2024-09-06 10:00:00', '2024-09-08 23:59:59', '2024-06-01 12:00:00', 'Annual celebration with music, performances, and various attractions in Tarnowskie Góry.', 1, 'Tarnowskie Góry, Poland', 'gwarki.jpg', 1, 150, 10, 10000, 200, true, 0, false, false, 1, 1, 1),
+('Czerwone Gitary - Diamentowa Trasa 60-lecia', '2024-10-01 19:00:00', '2024-10-01 21:00:00', '2024-08-01 09:00:00', 'Celebration of 60 years of the legendary Polish band Czerwone Gitary.', 2, 'Września, Poland', 'czerwone-gitary.jpg', 2, 80, 5, 500, 50, true, 0, false, false, 1, 1, 2),
+('Kortez - Naucz Mnie Tańczyć Wiosna Tour', '2024-05-20 18:00:00', '2024-05-20 20:00:00', '2024-03-20 10:00:00', 'Spring tour of the renowned Polish artist Kortez.', 0, 'Various locations, Poland', 'kortez-tour.jpg', 3, 120, 8, 800, 80, true, 1, false, false, 1, 1, 3),
+('Myslovitz - 25 lat miłości w czasach popkultury część druga', '2024-06-15 19:00:00', '2024-06-15 21:00:00', '2024-04-15 09:00:00', 'Celebration of 25 years of the iconic Polish band Myslovitz.', 0, 'Various locations, Poland', 'myslovitz.jpg', 4, 110, 7, 700, 70, true, 2, false, false, 1, 1, 4),
+('The Legend of Rock Symphonic', '2024-11-05 20:00:00', '2024-11-05 22:00:00', '2024-09-05 12:00:00', 'Symphonic interpretations of classic rock hits.', 1, 'Various locations, Poland', 'rock-symphonic.jpg', 5, 130, 6, 900, 90, true, 0, false, false, 1, 1, 5),
+('Mamma Mia - koncert Tribute to Abba', '2024-07-10 19:00:00', '2024-07-10 21:00:00', '2024-05-10 10:00:00', 'Tribute concert to the legendary band ABBA.', 2, 'Various locations, Poland', 'mamma-mia.jpg', 5, 140, 9, 1000, 100, true, 0, false, false, 1, 1, 6),
+('Koncert Metallica', '2024-09-15 19:00:00', '2024-09-15 22:00:00', '2024-08-05 12:00:00', 'Legendarny koncert zespołu Metallica', 2, 'Warszawa, Poland', 'metallica.jpg', 7, 500, 100, 50000, 1, true, 3, false, false, 1, 1, 7),
+('Konferencja IT', '2024-10-01 09:00:00', '2024-10-03 17:00:00', '2024-08-05 12:00:00', 'Konferencja na temat najnowszych trendów w IT', 2, 'Katowice, Poland', 'it_conference.png', 8, 200, 50, 1000, 1, true, 0, false, false, 1, 2, 7),
+('Żużel', '2024-09-10 18:00:00', '2024-09-10 21:00:00', '2024-08-05 12:00:00', 'Emocjonujące zawody żużlowe', 0, 'Wrocław, Poland', 'zuzel.jpg', 9, 300, 80, 20000, 1, true, 1, false, false, 1, 3, 6),
+('Maraton', '2024-09-20 07:00:00', '2024-09-20 15:00:00', '2024-08-05 12:00:00', 'Maraton ulicami miasta', 1, 'Gdańsk, Poland', 'maraton.jpg', 10, 400, 120, 10000, 1, true, 2, false, false, 1, 4, 4),
+('Półmaraton charytatywny', '2024-09-25 08:00:00', '2024-09-25 12:00:00', '2024-08-05 12:00:00', 'Półmaraton charytatywny dla chorego dziecka', 1, 'Poznań, Poland', 'polmaraton.jpg', 11, 350, 90, 5000, 1, true, 0, false, false, 1, 4, 5),
+('E-sportowy turniej', '2024-10-05 10:00:00', '2024-10-05 20:00:00', '2024-08-05 12:00:00', 'Turniej e-sportowy z udziałem najlepszych graczy', 2, 'Łódź, Poland', 'esport.jpg', 12, 450, 110, 3000, 1, true, 0, false, false, 1, 5, 4),
+('Koncert Taco Hemingway', '2024-09-30 19:00:00', '2024-09-30 22:00:00', '2024-08-05 12:00:00', 'Koncert popularnego rapera Taco Hemingway', 1, 'Kraków, Poland', 'taco.jpg', 13, 500, 100, 20000, 1, true, 1, false, false, 1, 1, 7),
+('Piknik dziecięcy', '2024-09-05 10:00:00', '2024-09-05 16:00:00', '2024-08-05 12:00:00', 'Rodzinny piknik z atrakcjami dla dzieci', 0, 'Szczecin, Poland', 'piknik.jpg', 14, 200, 50, 1000, 1, true, 0, false, false, 1, 6, 6),
+('KSW edycja', '2024-10-10 18:00:00', '2024-10-10 23:00:00', '2024-08-05 12:00:00', 'Gala KSW z walką wieczoru: Szpila vs Mamed Khalidow', 0, 'Warszawa, Poland', 'ksw.jpg', 15, 600, 150, 15000, 1, true, 2, false, false, 1, 7, 5),
+('Wege festiwal', '2024-09-12 11:00:00', '2024-09-12 18:00:00', '2024-08-05 12:00:00', 'Festiwal wegetariańskiego jedzenia', 1, 'Gdynia, Poland', 'wege.jpg', 16, 300, 80, 5000, 1, true, 0, false, false, 1, 8, 5),
+('Maraton horrorów Halloween', '2024-10-31 20:00:00', '2024-11-01 06:00:00', '2024-08-05 12:00:00', 'Całonocny maraton filmów grozy w Halloween', 1, 'Warszawa, Poland', 'halloween.jpg', 17, 500, 120, 20000, 1, true, 3, false, false, 1, 9, 4),
+('Spektakl teatralny - Skąpiec', '2024-10-01 19:00:00', '2024-10-01 21:00:00', '2024-08-05 12:00:00', 'Spektakl teatralny na podstawie dzieła Moliera', 1, 'Lublin, Poland', 'skapiec.jpg', 18, 400, 100, 8000, 1, true, 0, false, false, 1, 10, 6),
+('Koncert orkiestry symfonicznej', '2024-11-01 18:00:00', '2024-11-01 20:00:00', '2024-08-05 12:00:00', 'Koncert muzyki klasycznej w wykonaniu orkiestry symfonicznej', 1, 'Wrocław, Poland', 'orkiestra.jpg', 19, 300, 80, 10000, 1, true, 0, false, false, 1, 11, 7),
+('Festiwal filmowy', '2024-09-01 14:00:00', '2024-09-05 22:00:00', '2024-08-05 12:00:00', 'Festiwal filmowy z pokazem filmów z całego świata', 0, 'Łódź, Poland', 'festiwal.jpg', 20, 200, 50, 5000, 1, true, 0, false, false, 1, 12, 6),
+('Łyżwiarstwo na lodzie', '2024-12-01 10:00:00', '2024-12-01 14:00:00', '2024-08-05 12:00:00', 'Pokazy łyżwiarstwa figurowego', 2, 'Katowice, Poland', 'lyzwiarstwo.jpg', 26, 200, 50, 1000, 1, false, 1, false, false, 1, 16, 1),
+('Rammstein', '2024-09-25 19:00:00', '2024-09-25 22:00:00', '2024-08-05 12:00:00', 'Koncert zespołu Rammstein', 2, 'Warszawa, Poland', 'rammstein.jpg', 27, 600, 150, 50000, 1, false, 2, false, false, 1, 1, 2),
+('Słoń i Cartman koncert', '2024-09-30 20:00:00', '2024-09-30 23:00:00', '2024-08-05 12:00:00', 'Koncert Słonia i Cartmana', 2, 'Poznań, Poland', 'slon_cartman.jfif', 28, 400, 100, 10000, 1, false, 3, false, false, 1, 1, 3),
+('Finał WOŚP', '2024-01-14 12:00:00', '2024-01-14 23:00:00', '2024-08-05 12:00:00', 'Finał Wielkiej Orkiestry Świątecznej Pomocy', 2, 'Gdańsk, Poland', 'wosp.jpg', 29, 500, 120, 20000, 1, false, 4, false, false, 1, 17, 4),
+('Konkurs flanek', '2024-09-10 15:00:00', '2024-09-10 18:00:00', '2024-08-05 12:00:00', 'Konkurs na najlepszą flanek', 2, 'Łódź, Poland', 'flanek.jfif', 30, 300, 80, 1000, 1, false, 5, false, false, 1, 18, 5),
+('Maraton Piątku 13-stego', '2024-09-13 20:00:00', '2024-09-14 06:00:00', '2024-08-05 12:00:00', 'Maraton filmów z serii Piątek 13-stego', 2, 'Warszawa, Poland', 'piatek13.jpg', 31, 400, 100, 2000, 1, false, 6, false, false, 1, 9, 6),
+('Nocne granie RPG', '2024-09-20 18:00:00', '2024-09-21 06:00:00', '2024-08-05 12:00:00', 'Nocne sesje gier RPG', 2, 'Katowice, Poland', 'rpg.jfif', 32, 350, 90, 1000, 1, false, 0, false, false, 1, 19, 1),
+('Yoga w parku', '2024-09-05 08:00:00', '2024-09-05 10:00:00', '2024-08-05 12:00:00', 'Poranna sesja jogi w parku', 2, 'Szczecin, Poland', 'yoga.jpg', 33, 200, 50, 500, 1, false, 0, false, false, 1, 20, 2),
+('Silent disco', '2024-09-12 22:00:00', '2024-09-13 02:00:00', '2024-08-05 12:00:00', 'Cicha dyskoteka z słuchawkami', 2, 'Poznań, Poland', 'silent_disco.jpg', 34, 300, 80, 1000, 1, false, 0, false, false, 1, 21, 3),
+('Wyścigi rydwanów', '2024-09-18 14:00:00', '2024-09-18 18:00:00', '2024-08-05 12:00:00', 'Wyścigi rydwanów w stylu starożytnym', 0, 'Wrocław, Poland', 'rydwan.jpg', 35, 400, 100, 2000, 1, false, 0, false, false, 1, 22, 4),
+('Mecz piłkarski', '2024-09-25 18:00:00', '2024-09-25 20:00:00', '2024-08-05 12:00:00', 'Mecz piłkarski lokalnych drużyn', 1, 'Kraków, Poland', 'pilka.jpg', 36, 500, 120, 10000, 1, false, 0, false, false, 1, 23, 5),
+('Spływ kajakowy', '2024-09-10 09:00:00', '2024-09-10 15:00:00', '2024-08-05 12:00:00', 'Spływ kajakowy rzeką', 2, 'Gdynia, Poland', 'kajaki.jpg', 37, 200, 50, 500, 1, false, 1, false, false, 1, 24, 6),
+('Balet', '2024-09-30 19:00:00', '2024-09-30 21:00:00', '2024-08-05 12:00:00', 'Występ baletowy', 0, 'Warszawa, Poland', 'balet.jpeg', 38, 300, 80, 1000, 1, false, 1, false, false, 1, 25, 1),
+('Pokaz pojazdów wojskowych', '2024-09-15 10:00:00', '2024-09-15 16:00:00', '2024-08-05 12:00:00', 'Pokaz historycznych pojazdów wojskowych', 1, 'Katowice, Poland', 'wojskowe.jpg', 39, 400, 100, 2000, 1, false, 0, false, false, 1, 26, 2),
+('Gliwickie granie RPG', '2024-09-20 18:00:00', '2024-09-21 06:00:00', '2024-08-05 12:00:00', 'Nocne sesje gier RPG w Gliwicach', 0, 'Gliwice, Poland', 'gliwice_rpg.jpg', 40, 350, 90, 1000, 1, false, 0, false, false, 1, 19, 3),
+('Koncert szant', '2024-09-10 18:00:00', '2024-09-10 21:00:00', '2024-08-05 12:00:00', 'Koncert muzyki szantowej', 1, 'Gdańsk, Poland', 'szanty.jpg', 41, 300, 80, 2000, 1, false, 0, false, false, 1, 1, 4),
+('Festiwal Sztuki Ulicznej', '2024-09-07 12:00:00', '2024-09-07 20:00:00', '2024-08-05 12:00:00', 'Pokazy sztuki ulicznej, graffiti i występy artystów', 1, 'Warszawa, Poland', 'sztuka_uliczna.jpg', 42, 300, 80, 2000, 1, false, 0, false, false, 1, 27, 5),
+('Warsztaty kulinarne', '2024-09-12 10:00:00', '2024-09-12 14:00:00', '2024-08-05 12:00:00', 'Warsztaty gotowania z lokalnymi szefami kuchni', 0, 'Kraków, Poland', 'kulinarne.jpg', 43, 200, 50, 500, 1, false, 0, false, false, 1, 28, 6),
+('Festiwal Komiksu', '2024-09-20 09:00:00', '2024-09-20 18:00:00', '2024-08-05 12:00:00', 'Spotkania z autorami komiksów, panele dyskusyjne i wystawy', 0, 'Łódź, Poland', 'komiks.jpg', 44, 400, 100, 3000, 1, false, 5, false, false, 1, 29, 1),
+('Festiwal Muzyki Klasycznej', '2024-09-25 18:00:00', '2024-09-25 21:00:00', '2024-08-05 12:00:00', 'Koncerty muzyki klasycznej w wykonaniu orkiestr i solistów', 0, 'Poznań, Poland', 'muzyka_klasyczna.jpg', 45, 500, 120, 1000, 1, false, 0, false, false, 1, 30, 2),
+('Festiwal Teatralny', '2024-10-01 17:00:00', '2024-10-01 22:00:00', '2024-08-05 12:00:00', 'Przedstawienia teatralne i warsztaty aktorskie', 1, 'Gdańsk, Poland', 'teatr.jpg', 46, 300, 80, 1500, 1, false, 1, false, false, 1, 31, 3),
+('Festiwal Gier Planszowych', '2024-10-05 10:00:00', '2024-10-05 18:00:00', '2024-08-05 12:00:00', 'Turnieje i prezentacje najnowszych gier planszowych', 2, 'Wrocław, Poland', 'gry_planszowe.png', 47, 400, 100, 2000, 1, false, 0, false, false, 1, 32, 4),
+('Festiwal Książki', '2024-10-10 09:00:00', '2024-10-10 17:00:00', '2024-08-05 12:00:00', 'Spotkania autorskie, panele dyskusyjne i targi książki', 1, 'Szczecin, Poland', 'ksiazka.png', 48, 300, 80, 1500, 1, false, 0, false, false, 1, 33, 5),
+('Festiwal Tańca Nowoczesnego', '2024-10-15 18:00:00', '2024-10-15 22:00:00', '2024-08-05 12:00:00', 'Pokazy tańca nowoczesnego i warsztaty taneczne', 1, 'Warszawa, Poland', 'taniec_nowoczesny.jpg', 49, 400, 100, 2000, 1, false, 0, false, false, 1, 34, 6),
+('Festiwal Filmów Dokumentalnych', '2024-10-20 16:00:00', '2024-10-20 22:00:00', '2024-08-05 12:00:00', 'Pokazy filmów dokumentalnych i spotkania z reżyserami', 0, 'Katowice, Poland', 'dokument.jfif', 50, 300, 80, 1000, 1, false, 1, false, false, 1, 35, 1),
+('Festiwal Jazzowy', '2024-10-25 19:00:00', '2024-10-25 23:00:00', '2024-08-05 12:00:00', 'Koncerty jazzowe z udziałem znanych artystów', 2, 'Kraków, Poland', 'jazz.png', 51, 500, 120, 2000, 1, false, 0, false, false, 1, 36, 2);
+
+
+--
+--INSERT INTO event ("name", "date_of_start", "date_of_end", "date_of_upload", "description", "location", "address", "image", "author_id", "pluses", "minuses", "amount_of_all_tickets", "amount_of_batches", "is_reported", "is_sold_out", "is_expired", "event_status", "event_type") 
+--VALUES 
+--('Gwarki', '2024-09-06 10:00:00', '2024-09-08 23:59:59', '2024-06-01 12:00:00', 'Annual celebration with music, performances, and various attractions in Tarnowskie Góry.', 1, 'Tarnowskie Góry, Poland', 'gwarki.jpg', 1, 150, 10, 10000, 200, false, false, false, 1, 1),
+--('Czerwone Gitary - Diamentowa Trasa 60-lecia', '2024-10-01 19:00:00', '2024-10-01 21:00:00', '2024-08-01 09:00:00', 'Celebration of 60 years of the legendary Polish band Czerwone Gitary.', 2, 'Września, Poland', 'czerwone-gitary.jpg', 2, 80, 5, 500, 50, false, false, false, 1, 1),
+--('Kortez - Naucz Mnie Tańczyć Wiosna Tour', '2024-05-20 18:00:00', '2024-05-20 20:00:00', '2024-03-20 10:00:00', 'Spring tour of the renowned Polish artist Kortez.', 0, 'Various locations, Poland', 'kortez-tour.jpg', 3, 120, 8, 800, 80, false, false, false, 1, 1),
+--('Myslovitz - 25 lat miłości w czasach popkultury część druga', '2024-06-15 19:00:00', '2024-06-15 21:00:00', '2024-04-15 09:00:00', 'Celebration of 25 years of the iconic Polish band Myslovitz.', 0, 'Various locations, Poland', 'myslovitz.jpg', 4, 110, 7, 700, 70, false, false, false, 1, 1),
+--('The Legend of Rock Symphonic', '2024-11-05 20:00:00', '2024-11-05 22:00:00', '2024-09-05 12:00:00', 'Symphonic interpretations of classic rock hits.', 1, 'Various locations, Poland', 'rock-symphonic.jpg', 5, 130, 6, 900, 90, false, false, false, 1, 1),
+--('Mamma Mia - koncert Tribute to Abba', '2024-07-10 19:00:00', '2024-07-10 21:00:00', '2024-05-10 10:00:00', 'Tribute concert to the legendary band ABBA.', 2, 'Various locations, Poland', 'mamma-mia.jpg', 5, 140, 9, 1000, 100, false, false, false, 1, 1),
+--('Koncert Metallica', '2024-09-15 19:00:00', '2024-09-15 22:00:00', '2024-08-05 12:00:00', 'Legendarny koncert zespołu Metallica', 2, 'Warszawa, Poland', 'metallica.jpg', 7, 500, 100, 50000, 1, false, false, false, 1, 1),
+--('Konferencja IT', '2024-10-01 09:00:00', '2024-10-03 17:00:00', '2024-08-05 12:00:00', 'Konferencja na temat najnowszych trendów w IT', 2, 'Katowice, Poland', 'it_conference.png', 8, 200, 50, 1000, 1, false, false, false, 1, 2),
+--('Żużel', '2024-09-10 18:00:00', '2024-09-10 21:00:00', '2024-08-05 12:00:00', 'Emocjonujące zawody żużlowe', 0, 'Wrocław, Poland', 'zuzel.jpg', 9, 300, 80, 20000, 1, false, false, false, 1, 3),
+--('Maraton', '2024-09-20 07:00:00', '2024-09-20 15:00:00', '2024-08-05 12:00:00', 'Maraton ulicami miasta', 1, 'Gdańsk, Poland', 'maraton.jpg', 10, 400, 120, 10000, 1, false, false, false, 1, 4),
+--('Półmaraton charytatywny', '2024-09-25 08:00:00', '2024-09-25 12:00:00', '2024-08-05 12:00:00', 'Półmaraton charytatywny dla chorego dziecka', 1, 'Poznań, Poland', 'polmaraton.jpg', 11, 350, 90, 5000, 1, false, false, false, 1, 4),
+--('E-sportowy turniej', '2024-10-05 10:00:00', '2024-10-05 20:00:00', '2024-08-05 12:00:00', 'Turniej e-sportowy z udziałem najlepszych graczy', 2, 'Łódź, Poland', 'esport.jpg', 12, 450, 110, 3000, 1, false, false, false, 1, 5),
+--('Koncert Taco Hemingway', '2024-09-30 19:00:00', '2024-09-30 22:00:00', '2024-08-05 12:00:00', 'Koncert popularnego rapera Taco Hemingway', 1, 'Kraków, Poland', 'taco.jpg', 13, 500, 100, 20000, 1, false, false, false, 1, 1),
+--('Piknik dziecięcy', '2024-09-05 10:00:00', '2024-09-05 16:00:00', '2024-08-05 12:00:00', 'Rodzinny piknik z atrakcjami dla dzieci', 0, 'Szczecin, Poland', 'piknik.jpg', 14, 200, 50, 1000, 1, false, false, false, 1, 6),
+--('KSW edycja', '2024-10-10 18:00:00', '2024-10-10 23:00:00', '2024-08-05 12:00:00', 'Gala KSW z walką wieczoru: Szpila vs Mamed Khalidow', 0, 'Warszawa, Poland', 'ksw.jpg', 15, 600, 150, 15000, 1, false, false, false, 1, 7),
+--('Wege festiwal', '2024-09-12 11:00:00', '2024-09-12 18:00:00', '2024-08-05 12:00:00', 'Festiwal wegetariańskiego jedzenia', 1, 'Gdynia, Poland', 'wege.jpg', 16, 300, 80, 5000, 1, false, false, false, 1, 8),
+--('Maraton horrorów Halloween', '2024-10-31 20:00:00', '2024-11-01 06:00:00', '2024-08-05 12:00:00', 'Noc pełna przerażających filmów grozy', 2, 'Warszawa, Poland', 'halloween.jpg', 17, 400, 100, 2000, 1, false, false, false, 1, 9),
+--('Sylwester z Polsatem', '2024-12-31 20:00:00', '2025-01-01 02:00:00', '2024-08-05 12:00:00', 'Sylwestrowa zabawa z Polsatem', 1, 'Katowice, Poland', 'sylwester.jpg', 18, 500, 120, 10000, 1, false, false, false, 1, 10),
+--('Rap Stacja', '2024-09-22 18:00:00', '2024-09-22 23:00:00', '2024-08-05 12:00:00', 'Koncert najlepszych raperów', 1, 'Łódź, Poland', 'rap.jpg', 19, 450, 110, 5000, 1, false, false, false, 1, 1),
+--('Konkurs ludowego tańca', '2024-09-18 14:00:00', '2024-09-18 18:00:00', '2024-08-05 12:00:00', 'Konkurs tańca ludowego z udziałem zespołów z całej Polski', 1, 'Kraków, Poland', 'taniec.jpg', 20, 300, 80, 2000, 1, false, false, false, 1, 11),
+--('Oktobeer Fest', '2024-10-05 12:00:00', '2024-10-05 22:00:00', '2024-08-05 12:00:00', 'Festiwal piwa z lokalnymi browarami', 1, 'Poznań, Poland', 'oktobeer.jfif', 21, 400, 100, 3000, 1, false, false, false, 1, 8),
+--('Turniej koszykarski', '2024-09-28 10:00:00', '2024-09-28 18:00:00', '2024-08-05 12:00:00', 'Turniej koszykówki z udziałem najlepszych drużyn', 1, 'Gdańsk, Poland', 'koszykowka.jfif', 22, 350, 90, 2000, 1, false, false, false, 1, 12),
+--('Moto Festiwal', '2024-09-14 09:00:00', '2024-09-14 17:00:00', '2024-08-05 12:00:00', 'Festiwal motoryzacyjny z pokazami i wyścigami', 1, 'Wrocław, Poland', 'moto.jpg', 23, 500, 120, 5000, 1, false, false, false, 1, 13),
+--('Turniej rycerski', '2024-09-21 10:00:00', '2024-09-21 18:00:00', '2024-08-05 12:00:00', 'Turniej rycerski z rekonstrukcjami historycznymi', 1, 'Szczecin, Poland', 'rycerski.jfif', 24, 300, 80, 2000, 1, false, false, false, 1, 14),
+--('Festiwal filmowy', '2024-10-12 18:00:00', '2024-10-12 23:00:00', '2024-08-05 12:00:00', 'Festiwal filmowy z pokazami najnowszych produkcji', 0, 'Warszawa, Poland', 'film.jpg', 25, 450, 110, 3000, 1, false, false, false, 1, 15),
+--
+--('Łyżwiarstwo na lodzie', '2024-12-01 10:00:00', '2024-12-01 14:00:00', '2024-08-05 12:00:00', 'Pokazy łyżwiarstwa figurowego', 2, 'Katowice, Poland', 'lyzwiarstwo.jpg', 26, 200, 50, 1000, 1, false, false, false, 1, 16),
+--('Rammstein', '2024-09-25 19:00:00', '2024-09-25 22:00:00', '2024-08-05 12:00:00', 'Koncert zespołu Rammstein', 2, 'Warszawa, Poland', 'rammstein.jpg', 27, 600, 150, 50000, 1, false, false, false, 1, 1),
+--('Słoń i Cartman koncert', '2024-09-30 20:00:00', '2024-09-30 23:00:00', '2024-08-05 12:00:00', 'Koncert Słonia i Cartmana', 2, 'Poznań, Poland', 'slon_cartman.jfif', 28, 400, 100, 10000, 1, false, false, false, 1, 1),
+--('Finał WOŚP', '2024-01-14 12:00:00', '2024-01-14 23:00:00', '2024-08-05 12:00:00', 'Finał Wielkiej Orkiestry Świątecznej Pomocy', 2, 'Gdańsk, Poland', 'wosp.jpg', 29, 500, 120, 20000, 1, false, false, false, 1, 17),
+--('Konkurs flanek', '2024-09-10 15:00:00', '2024-09-10 18:00:00', '2024-08-05 12:00:00', 'Konkurs na najlepszą flanek', 2, 'Łódź, Poland', 'flanek.jfif', 30, 300, 80, 1000, 1, false, false, false, 1, 18),
+--('Maraton Piątku 13-stego', '2024-09-13 20:00:00', '2024-09-14 06:00:00', '2024-08-05 12:00:00', 'Maraton filmów z serii Piątek 13-stego', 2, 'Warszawa, Poland', 'piatek13.jpg', 31, 400, 100, 2000, 1, false, false, false, 1, 9),
+--('Nocne granie RPG', '2024-09-20 18:00:00', '2024-09-21 06:00:00', '2024-08-05 12:00:00', 'Nocne sesje gier RPG', 2, 'Katowice, Poland', 'rpg.jfif', 32, 350, 90, 1000, 1, false, false, false, 1, 19),
+--('Yoga w parku', '2024-09-05 08:00:00', '2024-09-05 10:00:00', '2024-08-05 12:00:00', 'Poranna sesja jogi w parku', 2, 'Szczecin, Poland', 'yoga.jpg', 33, 200, 50, 500, 1, false, false, false, 1, 20),
+--('Silent disco', '2024-09-12 22:00:00', '2024-09-13 02:00:00', '2024-08-05 12:00:00', 'Cicha dyskoteka z słuchawkami', 2, 'Poznań, Poland', 'silent_disco.jpg', 34, 300, 80, 1000, 1, false, false, false, 1, 21),
+--('Wyścigi rydwanów', '2024-09-18 14:00:00', '2024-09-18 18:00:00', '2024-08-05 12:00:00', 'Wyścigi rydwanów w stylu starożytnym', 0, 'Wrocław, Poland', 'rydwan.jpg', 35, 400, 100, 2000, 1, false, false, false, 1, 22),
+--('Mecz piłkarski', '2024-09-25 18:00:00', '2024-09-25 20:00:00', '2024-08-05 12:00:00', 'Mecz piłkarski lokalnych drużyn', 1, 'Kraków, Poland', 'pilka.jpg', 36, 500, 120, 10000, 1, false, false, false, 1, 23),
+--('Spływ kajakowy', '2024-09-10 09:00:00', '2024-09-10 15:00:00', '2024-08-05 12:00:00', 'Spływ kajakowy rzeką', 2, 'Gdynia, Poland', 'kajaki.jpg', 37, 200, 50, 500, 1, false, false, false, 1, 24),
+--('Balet', '2024-09-30 19:00:00', '2024-09-30 21:00:00', '2024-08-05 12:00:00', 'Występ baletowy', 0, 'Warszawa, Poland', 'balet.jpeg', 38, 300, 80, 1000, 1, false, false, false, 1, 25),
+--('Pokaz pojazdów wojskowych', '2024-09-15 10:00:00', '2024-09-15 16:00:00', '2024-08-05 12:00:00', 'Pokaz historycznych pojazdów wojskowych', 1, 'Katowice, Poland', 'wojskowe.jpg', 39, 400, 100, 2000, 1, false, false, false, 1, 26),
+--('Gliwickie granie RPG', '2024-09-20 18:00:00', '2024-09-21 06:00:00', '2024-08-05 12:00:00', 'Nocne sesje gier RPG w Gliwicach', 0, 'Gliwice, Poland', 'gliwice_rpg.jpg', 40, 350, 90, 1000, 1, false, false, false, 1, 19),
+--('Koncert szant', '2024-09-10 18:00:00', '2024-09-10 21:00:00', '2024-08-05 12:00:00', 'Koncert muzyki szantowej', 1, 'Gdańsk, Poland', 'szanty.jpg', 41, 300, 80, 2000, 1, false, false, false, 1, 1),
+--('Festiwal Sztuki Ulicznej', '2024-09-07 12:00:00', '2024-09-07 20:00:00', '2024-08-05 12:00:00', 'Pokazy sztuki ulicznej, graffiti i występy artystów', 1, 'Warszawa, Poland', 'sztuka_uliczna.jpg', 42, 300, 80, 2000, 1, false, false, false, 1, 27),
+--('Warsztaty kulinarne', '2024-09-12 10:00:00', '2024-09-12 14:00:00', '2024-08-05 12:00:00', 'Warsztaty gotowania z lokalnymi szefami kuchni', 0, 'Kraków, Poland', 'kulinarne.jpg', 43, 200, 50, 500, 1, false, false, false, 1, 28),
+--('Festiwal Komiksu', '2024-09-20 09:00:00', '2024-09-20 18:00:00', '2024-08-05 12:00:00', 'Spotkania z autorami komiksów, panele dyskusyjne i wystawy', 0, 'Łódź, Poland', 'komiks.jpg', 44, 400, 100, 3000, 1, false, false, false, 1, 29),
+--('Festiwal Muzyki Klasycznej', '2024-09-25 18:00:00', '2024-09-25 21:00:00', '2024-08-05 12:00:00', 'Koncerty muzyki klasycznej w wykonaniu orkiestr i solistów', 0, 'Poznań, Poland', 'muzyka_klasyczna.jpg', 45, 500, 120, 1000, 1, false, false, false, 1, 30),
+--('Festiwal Teatralny', '2024-10-01 17:00:00', '2024-10-01 22:00:00', '2024-08-05 12:00:00', 'Przedstawienia teatralne i warsztaty aktorskie', 1, 'Gdańsk, Poland', 'teatr.jpg', 46, 300, 80, 1500, 1, false, false, false, 1, 31),
+--('Festiwal Gier Planszowych', '2024-10-05 10:00:00', '2024-10-05 18:00:00', '2024-08-05 12:00:00', 'Turnieje i prezentacje najnowszych gier planszowych', 2, 'Wrocław, Poland', 'gry_planszowe.png', 47, 400, 100, 2000, 1, false, false, false, 1, 32),
+--('Festiwal Książki', '2024-10-10 09:00:00', '2024-10-10 17:00:00', '2024-08-05 12:00:00', 'Spotkania autorskie, panele dyskusyjne i targi książki', 1, 'Szczecin, Poland', 'ksiazka.png', 48, 300, 80, 1500, 1, false, false, false, 1, 33),
+--('Festiwal Tańca Nowoczesnego', '2024-10-15 18:00:00', '2024-10-15 22:00:00', '2024-08-05 12:00:00', 'Pokazy tańca nowoczesnego i warsztaty taneczne', 1, 'Warszawa, Poland', 'taniec_nowoczesny.jpg', 49, 400, 100, 2000, 1, false, false, false, 1, 34),
+--('Festiwal Filmów Dokumentalnych', '2024-10-20 16:00:00', '2024-10-20 22:00:00', '2024-08-05 12:00:00', 'Pokazy filmów dokumentalnych i spotkania z reżyserami', 0, 'Katowice, Poland', 'dokument.jfif', 50, 300, 80, 1000, 1, false, false, false, 1, 35),
+--('Festiwal Jazzowy', '2024-10-25 19:00:00', '2024-10-25 23:00:00', '2024-08-05 12:00:00', 'Koncerty jazzowe z udziałem znanych artystów', 2, 'Kraków, Poland', 'jazz.png', 51, 500, 120, 2000, 1, false, false, false, 1, 36);
+
+select image from event e;
+SELECT * FROM event e ;
+
+select name from "event" e where "location" < 2;
